@@ -14,6 +14,11 @@ const userschema = new mongoose.Schema({
     password : {
         type : String,
         required : true,
+    },
+    role : {
+        type : String,
+        enum : ['admin', 'user'],
+        default : 'user'
     }
 },
 {
@@ -31,5 +36,13 @@ userschema.pre("save" , async function(next){
         next(error);
     }
 })
+
+// If we give customize name in place of toJSON then we have to call it explicitely
+userschema.methods.toJSON = function () {
+    const user = this;
+    const userObject = user.toObject();
+    delete userObject.password;
+    return userObject;
+}
 
 module.exports = mongoose.model('user' , userschema);

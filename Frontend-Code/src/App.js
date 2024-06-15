@@ -7,10 +7,14 @@ import Login from "./components/pages/Login";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import Signup from "./components/pages/Signup";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AppLayout = () => {
     return (
         <>
+            <ToastContainer />
             <Header />
             <Outlet />
             <Footer />
@@ -27,23 +31,23 @@ const appRouter = createBrowserRouter([
                 path : '/',
                 element : <Home />, 
             },
+            {
+                path : "/signup",
+                element : <Signup />
+            },
+            {
+                path : "/login",
+                element : <Login />
+            },
+            {
+                path : "/forgot-password",
+                element : <ForgotPassword />
+            },
             
         ]
     },
-    {
-        path : "/login",
-        element : <Login />
-    },
-    {
-        path : "/forgot-password",
-        element : <ForgotPassword />
-    },
-    {
-        path : "/signup",
-        element : <Signup />
-    }
     
 ])
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter}/>)
+root.render(<RouterProvider router={appRouter} />)

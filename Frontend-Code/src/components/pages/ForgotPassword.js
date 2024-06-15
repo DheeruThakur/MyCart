@@ -29,9 +29,9 @@ const ForgotPassword = () => {
     }
 
     return (
-        <section className="bg-pink-50 min-h-screen flex justify-center">
+        <section className="min-h-screen flex justify-center">
             <div className="flex flex-col items-center justify-center px-6 py-8 mt-10 mx-auto h-[500px] w-1/3">
-                <div className="w-full bg-white rounded-lg shadow h-full">
+                <div className="w-full bg-pink-50 rounded-lg shadow h-full">
                     <div className="p-6 h-full">
                         <h1 className="text-xl font-bold text-green-500 flex justify-center my-6">
                             Set a new password
@@ -39,12 +39,12 @@ const ForgotPassword = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-col my-2">
                                 <label className="mb-2 text-sm font-medium text-black">Your email</label>
-                                <input type="email" name="email" value={formData.email} className="border border-gray-300  bg-gray-100 text-sm rounded-lg px-4 py-[6px] outline-none" placeholder="enter email" required onChange={handleChange}/>
+                                <input type="email" name="email" value={formData.email} className="border border-gray-300 text-sm rounded-lg px-4 py-[6px] outline-none" placeholder="enter email" required onChange={handleChange}/>
                             </div>
                             <div className="flex flex-col my-2">
                                 <label className="mb-2 text-sm font-medium text-black">Password</label>
                                 <div className="flex items-center relative">
-                                    <input type={ showPassword ? "text" : "password"} name="password" value={formData.password} placeholder="enter password" className=" bg-gray-100 w-full border border-gray-300 text-sm rounded-lg px-4 py-[6px] outline-none" required onChange={handleChange} />
+                                    <input type={ showPassword ? "text" : "password"} name="password" value={formData.password} placeholder="enter password" className="w-full border border-gray-300 text-sm rounded-lg px-4 py-[6px] outline-none" required onChange={handleChange} />
                                     {
                                         showPassword ? 
                                                     <TbEyeglassOff className="h-[16px] w-[18px] absolute right-4" onClick={() => setShowPassword(prev => !prev)}/> 
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
                             <div className="flex flex-col my-2">
                                 <label className="mb-2 text-sm font-medium text-black">Confirm Password</label>
                                 <div className="flex items-center relative">
-                                    <input type={ showConfirmPassword ? "text" : "password"} name="confirmPassword" value={formData.confirmPassword} placeholder="enter confirm password" className=" bg-gray-100 w-full border border-gray-300 text-sm rounded-lg px-4 py-[6px] outline-none" required onChange={handleChange}/>
+                                    <input type={ showConfirmPassword ? "text" : "password"} name="confirmPassword" value={formData.confirmPassword} placeholder="enter confirm password" className="w-full border border-gray-300 text-sm rounded-lg px-4 py-[6px] outline-none" required onChange={handleChange}/>
                                     {
                                         showConfirmPassword ? 
                                                     <TbEyeglassOff className="h-[16px] w-[18px] absolute right-4" onClick={() => setShowConfirmPassword(prev => !prev)}/> 
@@ -68,7 +68,7 @@ const ForgotPassword = () => {
                                 </div>
                             </div>
                             <div className="flex justify-center">
-                                <button className="border border-green-500 text-green-500 font-medium rounded-lg text-sm px-7 py-1 my-7 text-center hover:bg-pink-50">Reset Password</button>
+                                <button className="border border-green-500 text-green-500 font-medium rounded-lg text-sm px-7 py-1 my-7 text-center bg-white transform hover:scale-105 transition duration-100 hover:bg-green-500 hover:text-white">Reset Password</button>
                             </div>
                         </form>
                     </div>
