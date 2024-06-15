@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom"
 import { TbEyeglass2 } from "react-icons/tb";
 import { TbEyeglassOff } from "react-icons/tb";
-import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { Domain_NAME, endpoints } from "../../utils/constants";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { endpoints } from "../../utils/constants";
+import UserContext from "../../context/index"
 
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
     })
 
     const navigate = useNavigate();
+    const userContext = useContext(UserContext)
 
     const handleChange = (e) => {
         const {name , value} = e.target;
@@ -28,7 +30,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const URL = `${Domain_NAME}/${endpoints.login.path}`;
+        const URL = `${endpoints.login.path}`;
         try {
             const responseData = await fetch(URL , {
                 method : `${endpoints.login.method}`,
@@ -42,11 +44,10 @@ const Login = () => {
             });
     
             const jsonData = await responseData.json();
-            console.log(jsonData);
-            console.log(jsonData?.data?.token)
             if(jsonData.success){
                 localStorage.setItem('token' , jsonData?.data?.token);
                 toast.success("User login successfully");
+                userContext.fetchUserDetails();
                 navigate("/");
             }
             else {

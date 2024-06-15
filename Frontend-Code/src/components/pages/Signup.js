@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { TbEyeglass2 } from "react-icons/tb";
 import { TbEyeglassOff } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import { Domain_NAME, endpoints } from "../../utils/constants";
-import {ToastContainer, toast} from 'react-toastify'
+import { endpoints } from "../../utils/constants";
+import {toast} from 'react-toastify'
 
 
 const Signup = () => {
@@ -36,7 +36,7 @@ const Signup = () => {
             toast.error("password and confirm-password must be same");
             return;
         }
-        const URL = `${Domain_NAME}/${endpoints.signup.path}`;
+        const URL = `${endpoints.signup.path}`;
         
         try {
             const responseData = await fetch(URL , {
