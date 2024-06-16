@@ -14,6 +14,7 @@ import Context from "./context";
 import { Provider, useDispatch } from "react-redux";
 import store from "./utils/store/store";
 import { setUserDetail } from "./utils/slice/userSlice";
+import AdminPanel from "./components/pages/AdminPanel";
 
 
 const AppLayout = () => {
@@ -80,6 +81,10 @@ const appRouter = createBrowserRouter([
             {
                 path : "/forgot-password",
                 element : <ForgotPassword />
+            },
+            {
+                path : "/admin-panel",
+                element : <AdminPanel />
             },
             
         ]
