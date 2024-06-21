@@ -35,7 +35,7 @@ const Header = () => {
 
 
     return (
-        <div className="h-20 flex justify-between bg-pink-50 shadow-md">
+        <div className="h-20 flex justify-between bg-pink-50 shadow-md relative">
             <Link to="/"><img className="h-[82px] w-[150px] ml-2 py-2 px-2 rounded-xl" src={logo} alt="Logo" /></Link>
             <div className="py-5 ml-32"> 
                 <input className="mr-1 border-2 border-solid border-gray-300 px-10 py-1 rounded-md text-sm outline-none" type="text" placeholder="Search for products"/>

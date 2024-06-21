@@ -65,7 +65,8 @@ const login = async (req , res) => {
 
         const tokenPayload = {
             email,
-            userId : dbUser._id
+            userId : dbUser._id,
+            role : dbUser.role,
         }
 
         const jwtToken = jwt.sign(tokenPayload , process.env.JWT_SECRET , {expiresIn : '1h'});

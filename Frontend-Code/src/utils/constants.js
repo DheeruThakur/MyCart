@@ -13,5 +13,13 @@ export const endpoints = {
     userDetail : {
         path : `${Domain_NAME}/api/user-detail`,
         method : "GET"
+    },
+    fetchAllUsers : {
+        path : `${Domain_NAME}/api/all-users`,
+        method : "GET"
+    },
+    updateUser : {
+        path : `${Domain_NAME}/api/update-user`,
+        method : "PUT"
     }
 }

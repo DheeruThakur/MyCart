@@ -18,6 +18,7 @@ const userAuth = async (req , res , next) => {
         }
     
         req.userId = userdata.userId;
+        req.userRole = userdata.role;
         next();
 
     } catch (error) {
