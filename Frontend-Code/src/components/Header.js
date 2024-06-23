@@ -1,23 +1,28 @@
 
 import { FaRegUser } from "react-icons/fa6";
 import { HiMiniShoppingCart } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/logo.svg"
 import { useDispatch, useSelector } from "react-redux";
 import {clearUserDetails} from "../utils/slice/userSlice"
 import { useState } from "react";
+import Roles from "../utils/role";
 
 const Header = () => {
+
+    const navigate = useNavigate();
 
     const [showPanel , setShowPanel] = useState(false);
 
     const user = useSelector(state => state.userDetails.user)
+    // console.log(user);
     const dispatch = useDispatch();
 
     const handleLogout = () => {
         try {
             localStorage.removeItem("token");
-            dispatch(clearUserDetails())
+            dispatch(clearUserDetails());
+            navigate("/");
         } catch (error) {
             console.log("Error" , error);
         }
@@ -43,11 +48,16 @@ const Header = () => {
             </div>
             <div className="flex mr-10">
                 <div className="relative flex justify-center">
-                    <div className="mt-7 px-5">
-                        <FaRegUser className="h-6 w-6" onClick={handleShowPanel}/>
-                    </div>
                     {
-                        showPanel
+                        (user != null)
+                            && 
+                        <div className="mt-7 px-5">
+                            <FaRegUser className="h-6 w-6" onClick={handleShowPanel}/>
+                        </div>
+                    }
+                    
+                    {
+                        (showPanel && user?.role == Roles.ADMIN)
                         &&
                         <div className="absolute bottom-0 p-2 py-6 rounded-sm top-16 h-16 bg-pink-50 shadow-lg">
                         <nav className="bg-slate-50 rounded-sm">

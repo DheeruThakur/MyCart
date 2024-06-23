@@ -15,6 +15,8 @@ import { Provider, useDispatch } from "react-redux";
 import store from "./utils/store/store";
 import { setUserDetail } from "./utils/slice/userSlice";
 import AdminPanel from "./components/pages/AdminPanel";
+import AllUsers from "./components/pages/AllUsers";
+import AllProducts from "./components/pages/AllProducts";
 
 
 const AppLayout = () => {
@@ -84,7 +86,17 @@ const appRouter = createBrowserRouter([
             },
             {
                 path : "/admin-panel",
-                element : <AdminPanel />
+                element : <AdminPanel />,
+                children : [
+                    {
+                        path : "all-users",
+                        element : <AllUsers />
+                    },
+                    {
+                        path : "all-products",
+                        element : <AllProducts />
+                    }
+                ]
             },
             
         ]

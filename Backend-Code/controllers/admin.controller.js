@@ -21,7 +21,8 @@ const fetchAllUser = async (req , res) => {
 
 const updateUserRole = async (req , res) => {
     const {userId , name , email , role} = req.body?.user;
-    if(role != Roles.adminRole){
+    const userRole = req.userRole;
+    if(userRole != Roles.adminRole){
         return res.status(403).json({message:"user must be Admin" , success:false , error:true});
     }
 
