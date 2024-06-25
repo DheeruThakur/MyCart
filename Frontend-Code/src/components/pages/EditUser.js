@@ -51,8 +51,8 @@ const EditUser = ({user , setIsEditModalOpen , fetchUsers}) => {
         <div className="fixed top-0 bottom-0 left-0 right-0 h-full w-full flex justify-center items-center bg-slate-400 bg-opacity-[0.3]">
             
             <div className="relative max-w-sm bg-white mx-auto shadow-md px-8 rounded-md">
-                <div className='absolute top-0 right-0 m-3'>
-                    <IoClose className='h-5 w-5' onClick={() => setIsEditModalOpen(false)}/>
+                <div className='absolute top-0 right-0 m-3 hover:bg-red-400 hover:rounded-full'>
+                    <IoClose className='h-6 w-6 hover:text-white' onClick={() => setIsEditModalOpen(false)}/>
                 </div>
                 <h1 className='mt-8 font-semibold ml-16'>Change User Role</h1>
                 <p className='mt-6 capitalize'>Name : {user.fullName}</p>
