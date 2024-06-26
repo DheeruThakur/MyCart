@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "dotenv -e .env parcel build index.html"
+    "build": "parcel build index.html"
   },
   "author": "dheerendra singh",
   "license": "ISC",

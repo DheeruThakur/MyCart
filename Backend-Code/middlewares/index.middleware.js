@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken")
+const {Roles} = require("../utility/constants.utility")
 
 const userAuth = async (req , res , next) => {
     try {
@@ -11,7 +12,7 @@ const userAuth = async (req , res , next) => {
         }
     
         const userdata = await jwt.verify(token , process.env.JWT_SECRET);
-        console.log(userdata);
+        // console.log(userdata);
     
         if(!userdata){
             return res.status(401).json({message:"Invalid token !!" , success:false , error:true});
@@ -27,4 +28,24 @@ const userAuth = async (req , res , next) => {
     }
 }
 
-module.exports = {userAuth}
+const adminAuth = async (req , res , next) => {
+    try {
+    
+        const userRole = req.userRole;
+
+        if(userRole != Roles.adminRole){
+            return res.status(403).json({message:"Permission denied !!! , user must be Admin" , success:false , error:true});
+        }
+
+        next();
+
+    } catch (error) {
+        console.log(("Error" , error))
+        next(error);
+    }
+}
+
+module.exports = {
+    userAuth,
+    adminAuth,
+}

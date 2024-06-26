@@ -2,10 +2,19 @@ import { IoClose } from "react-icons/io5";
 import { IoCloudUpload } from "react-icons/io5";
 import productCategory from "../../utils/productCategory"
 import { useState } from "react";
-
+import UploadProductImage from '../ShowProductImage'
+import { MdDeleteForever } from "react-icons/md";
 import uploadImage from "../../utils/UploadImage";
+import { endpoints } from "../../utils/constants";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const UploadProduct = ({setShowUploadProductModal}) => {
+
+    const [showImage , setShowImage] = useState(false);
+    const [targetImage , setTargetImage] = useState("");
+
+    const navigate = useNavigate();
 
     const [data , setData] = useState({
         productName : "",
@@ -42,9 +51,51 @@ const UploadProduct = ({setShowUploadProductModal}) => {
         
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleShowImage = (img) => {
+        console.log("Image",img);
+        setShowImage(true);
+        setTargetImage(img);
+    }
+
+    const handleDeleteImage = (image) => {
+        const updatedArray = data.productImage.filter(img => img !== image);
+        setData(prev => {
+            return {
+                ...prev,
+                productImage : updatedArray,
+            }
+        })
+    }
+
+    const handleSubmit = async (e) => {
+        // e.preventDefault();
         console.log(data);
+        const uploadURL = endpoints.uploadProduct.path;
+        try {
+
+            const res = await fetch(uploadURL , {
+                method : endpoints.uploadProduct.method,
+                headers : {
+                    'Content-Type' : 'application/json',
+                    'Authorization' : `Bearer ${localStorage.getItem('token')}`
+                },
+                body : JSON.stringify(data)
+            })
+
+            const product = await res.json();
+            
+            if(product.success){
+                toast.success(product.message);
+                navigate("all-products");
+            }
+            else{
+                toast.error(product.message);
+            }
+            
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
     }
 
     return (
@@ -67,7 +118,7 @@ const UploadProduct = ({setShowUploadProductModal}) => {
                     </div>
                     <div className="flex flex-col mx-8 mt-4">
                         <label htmlFor="category" className="my-2">Category :</label>
-                        <select name="category" className="border border-gray-300 text-sm rounded-lg px-4 pr-10 py-[8px] outline-none bg-gray-100" required onChange={handleChange} >
+                        <select name="category" className="border border-gray-300 text-sm rounded-lg px-4 pr-10 py-[8px] outline-none bg-gray-100 cursor-pointer" required onChange={handleChange} >
                             <option>Select Category</option>
                             {
                                 productCategory.map((category , idx) => {
@@ -81,7 +132,7 @@ const UploadProduct = ({setShowUploadProductModal}) => {
                     <div className="flex flex-col mx-8 mt-4 ">
                         <label htmlFor="product-image" className="my-2">Product Image :</label>
                         <label htmlFor="img-container">
-                        <div id="product-image" className="h-[150px] flex flex-col justify-center items-center border border-gray-300 rounded-lg px-4 py-[8px] outline-none bg-gray-100">
+                        <div id="product-image" className="h-[150px] flex flex-col justify-center items-center border border-gray-300 rounded-lg px-4 py-[8px] outline-none bg-gray-100 cursor-pointer">
                             <IoCloudUpload className="h-12 w-12 mb-1"/>
                             <p className="text-sm my-1">Upload Product image</p>
                             <div className="hidden">
@@ -92,11 +143,15 @@ const UploadProduct = ({setShowUploadProductModal}) => {
                         {
                             data.productImage.length > 0
                                                         &&
-                                                        <div id="product-image" className="h-[140px] mt-[2px] py-[8px]  flex gap-2 overflow-x-auto">
+                                                        <div id="product-image" className=" h-[150px] mt-[10px] flex gap-2 overflow-x-auto">
                                                             {
                                                                 data.productImage.map((product , idx) => {
                                                                     return (  
-                                                                        <img src={product} alt={product} className="rounded-lg"/>                           
+                                                                        <div key={product} className="relative h-[140px] w-[200px] group flex-shrink-0 cursor-pointer">
+                                                                            <MdDeleteForever className="absolute top-1 right-1 h-5 w-5 hidden group-hover:block group-hover:bg-red-500 rounded-full group-hover:text-white" onClick={() => handleDeleteImage(product)}/>
+                                                                            <img src={product} alt={product} className="h-full w-full object-cover rounded-lg " onClick={() => handleShowImage(product)}/> 
+                                                                        </div>
+                                                                                                  
                                                                     )
                                                                 } )
                                                             }
@@ -121,6 +176,10 @@ const UploadProduct = ({setShowUploadProductModal}) => {
                     </div>
                 </form>
             </div>
+            {
+                showImage && <UploadProductImage image={targetImage} onClose={setShowImage} />
+            }
+            
         </div>
     )
 }

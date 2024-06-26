@@ -21,5 +21,9 @@ export const endpoints = {
     updateUser : {
         path : `${Domain_NAME}/api/update-user`,
         method : "PUT"
+    },
+    uploadProduct : {
+        path : `${Domain_NAME}/api/upload-product`,
+        method : "POST"
     }
 }

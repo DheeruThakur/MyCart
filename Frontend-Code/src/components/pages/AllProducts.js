@@ -9,6 +9,7 @@ const AllProducts = () => {
         setShowUploadProductModal(true);
     }
 
+
     return (
         <div>
             <div className="bg-slate-100 flex justify-between m-2 p-4">
