@@ -25,5 +25,13 @@ export const endpoints = {
     uploadProduct : {
         path : `${Domain_NAME}/api/upload-product`,
         method : "POST"
+    },
+    fetchAllProducts : {
+        path : `${Domain_NAME}/api/all-products`,
+        method : "GET"
+    },
+    updateProduct : {
+        path : `${Domain_NAME}/api/update-product`,
+        method : "PUT"
     }
 }

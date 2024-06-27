@@ -30,6 +30,30 @@ const uploadProduct = async (req , res) => {
     }
 }
 
+const updateProduct = async (req , res) => {
+    const {productName, brandName, category, productImage, description, price, sellingPrice , _id} = req.body;
+    try {
+    
+        const payload = {
+            productName, 
+            brandName, 
+            category, 
+            productImage, 
+            description, 
+            price, 
+            sellingPrice,
+        }
+
+        const updatedProduct = await Product.findByIdAndUpdate(_id , payload , {new : true});
+
+        return res.status(200).json({data : updatedProduct, message : "Product updated successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message : `${error.message}` , success : false , error : true})
+    }
+}
+
 const fetchAllProducts = async (req , res) => {
     try {
         const allProducts = await Product.find();
@@ -44,5 +68,6 @@ const fetchAllProducts = async (req , res) => {
 
 module.exports = {
     uploadProduct,
-    fetchAllProducts
+    fetchAllProducts,
+    updateProduct
 }

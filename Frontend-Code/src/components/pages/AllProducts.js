@@ -1,13 +1,41 @@
+import { toast } from "react-toastify"
+import { endpoints } from "../../utils/constants"
 import UploadProduct from "./UploadProduct"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import AdminProductCard from "../AdminProductCard";
 
 const AllProducts = () => {
 
     const [showUploadProductModal , setShowUploadProductModal] = useState(false)
+    const [allProducts , setAllProducts] = useState([]);
 
     const handleClick = () => {
         setShowUploadProductModal(true);
     }
+
+    const fetchAllProducts = async () => {
+        const fetchURL = endpoints.fetchAllProducts.path;
+        try {
+
+            const result = await fetch(fetchURL , {
+                method : endpoints.fetchAllProducts.method
+            })
+
+            const jsonData = await result.json();
+
+            if(jsonData.success){
+                setAllProducts(jsonData.data);
+            }
+            
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
+    }
+
+    useEffect(() => {
+        fetchAllProducts();
+    }, [])
 
 
     return (
@@ -25,7 +53,10 @@ const AllProducts = () => {
             {
                 showUploadProductModal && <UploadProduct setShowUploadProductModal={setShowUploadProductModal} />
             }
+            <AdminProductCard products={allProducts} fetchAllProducts={fetchAllProducts}/>
         </div>
+        
+
         
         
     )

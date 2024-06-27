@@ -14,5 +14,6 @@ router.put('/update-user', userAuth, adminAuth , userController.updateUserRole)
 
 router.post('/upload-product' , userAuth , adminAuth , productController.uploadProduct);
 router.get('/all-products' , productController.fetchAllProducts);
+router.put('/update-product' , userAuth , adminAuth , productController.updateProduct)
 
 module.exports = router;
