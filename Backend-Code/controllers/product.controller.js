@@ -65,9 +65,31 @@ const fetchAllProducts = async (req , res) => {
     }
 }
 
+const fetchProductByCategory = async (req , res) => {
+    try {
+        const allCategories = await Product.distinct("category");
+        const productsByCategory = [];
+
+        for (const cat of allCategories) {
+            const product = await Product.findOne({ category: cat });
+
+            if(product){
+                productsByCategory.push(product);
+            }  
+        }
+
+        return res.status(200).json({data : productsByCategory, message : "Products fetched successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message : `${error.message}` , success : false , error : true})
+    }
+}
+
 
 module.exports = {
     uploadProduct,
     fetchAllProducts,
-    updateProduct
+    updateProduct,
+    fetchProductByCategory
 }

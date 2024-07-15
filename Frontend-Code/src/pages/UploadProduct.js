@@ -1,11 +1,11 @@
 import { IoClose } from "react-icons/io5";
 import { IoCloudUpload } from "react-icons/io5";
-import productCategory from "../../utils/productCategory"
+import productCategory from "../utils/productCategory"
 import { useState } from "react";
-import UploadProductImage from '../ShowProductImage'
+import UploadProductImage from '../components/ShowProductImage'
 import { MdDeleteForever } from "react-icons/md";
-import uploadImage from "../../utils/UploadImage";
-import { endpoints } from "../../utils/constants";
+import uploadImage from "../utils/UploadImage";
+import { endpoints } from "../utils/constants";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 

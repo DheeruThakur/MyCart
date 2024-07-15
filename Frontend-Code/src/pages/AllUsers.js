@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoPencil } from "react-icons/io5";
 import { useEffect , useState } from "react";
-import { endpoints } from "../../utils/constants";
+import { endpoints } from "../utils/constants";
 import { toast } from "react-toastify";
 import Moment from "react-moment"
 import EditUser from "./EditUser";
@@ -49,7 +49,7 @@ const AllUsers = () => {
     }, [])
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 overflow-y-auto h-full">
             <table className="w-full bg-white shadow-md rounded-lg">
                 <thead>
                     <tr className="bg-gray-800 text-white">
@@ -75,7 +75,7 @@ const AllUsers = () => {
                                     </td>
                                     <td className="w-[15%] py-3 px-14">
                                         <button 
-                                            className="bg-green-100 h-10 w-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-green-500" 
+                                            className="bg-green-100 h-10 w-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-green-500 hover:text-white" 
                                             onClick={() => handleUserEdit(user)}
                                         >
                                             <IoPencil />

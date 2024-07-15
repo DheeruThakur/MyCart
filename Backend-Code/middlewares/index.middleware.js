@@ -32,11 +32,9 @@ const adminAuth = async (req , res , next) => {
     try {
     
         const userRole = req.userRole;
-
         if(userRole != Roles.adminRole){
             return res.status(403).json({message:"Permission denied !!! , user must be Admin" , success:false , error:true});
         }
-
         next();
 
     } catch (error) {

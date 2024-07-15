@@ -3,8 +3,8 @@ import { TbEyeglass2 } from "react-icons/tb";
 import { TbEyeglassOff } from "react-icons/tb";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { endpoints } from "../../utils/constants";
-import UserContext from "../../context/index"
+import { endpoints } from "../utils/constants";
+import UserContext from "../context/index"
 
 
 const Login = () => {

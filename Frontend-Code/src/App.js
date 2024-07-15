@@ -2,10 +2,9 @@ import ReactDOM from "react-dom/client"
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
-import ForgotPassword from "./components/pages/ForgotPassword";
-import Signup from "./components/pages/Signup";
+import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+import Signup from "./pages/Signup";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { endpoints } from "./utils/constants";
@@ -14,9 +13,11 @@ import Context from "./context";
 import { Provider, useDispatch } from "react-redux";
 import store from "./utils/store/store";
 import { setUserDetail } from "./utils/slice/userSlice";
-import AdminPanel from "./components/pages/AdminPanel";
-import AllUsers from "./components/pages/AllUsers";
-import AllProducts from "./components/pages/AllProducts";
+import AdminPanel from "./pages/AdminPanel";
+import AllUsers from "./pages/AllUsers";
+import AllProducts from "./pages/AllProducts";
+import ProductCategory from "./pages/ProductCategory";
+import HomePage from "./pages/Home"
 
 
 const AppLayout = () => {
@@ -70,7 +71,7 @@ const appRouter = createBrowserRouter([
         children : [
             {
                 path : '/',
-                element : <Home />, 
+                element : <HomePage />, 
             },
             {
                 path : "/signup",
@@ -97,6 +98,10 @@ const appRouter = createBrowserRouter([
                         element : <AllProducts />
                     }
                 ]
+            },
+            {
+                path : "/product-category/:categoryName",
+                element : <ProductCategory />
             },
             
         ]

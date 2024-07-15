@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Roles from '../../utils/role'
+import Roles from '../utils/role'
 import { IoClose } from "react-icons/io5";
-import { endpoints } from '../../utils/constants';
+import { endpoints } from '../utils/constants';
 import { toast } from 'react-toastify';
 
 const EditUser = ({user , setIsEditModalOpen , fetchUsers}) => {
@@ -22,8 +22,9 @@ const EditUser = ({user , setIsEditModalOpen , fetchUsers}) => {
     }
 
     const handlechangeUser = async () => {
+        console.log("handlechangeUser clicked")
         const updateURL = endpoints.updateUser.path;
-        
+        console.log("updateURL" , updateURL)
         try {
             const dataApi = await fetch(updateURL , {
                 method : endpoints.updateUser.method,

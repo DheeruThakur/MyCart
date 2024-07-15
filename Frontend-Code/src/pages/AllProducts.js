@@ -1,8 +1,8 @@
 import { toast } from "react-toastify"
-import { endpoints } from "../../utils/constants"
+import { endpoints } from "../utils/constants"
 import UploadProduct from "./UploadProduct"
 import { useEffect, useState } from "react"
-import AdminProductCard from "../AdminProductCard";
+import AdminProductCard from "../components/AdminProductCard";
 
 const AllProducts = () => {
 
@@ -39,7 +39,7 @@ const AllProducts = () => {
 
 
     return (
-        <div>
+        <div className="overflow-y-auto h-full w-full">
             <div className="bg-slate-100 flex justify-between m-2 p-4">
                 <div className="ml-2 flex items-center">
                     <p className="font-bold text-lg">All Products</p>

@@ -30,6 +30,10 @@ export const endpoints = {
         path : `${Domain_NAME}/api/all-products`,
         method : "GET"
     },
+    fetchProductByCategory : {
+        path : `${Domain_NAME}/api/product-by-categories`,
+        method : "GET"
+    },
     updateProduct : {
         path : `${Domain_NAME}/api/update-product`,
         method : "PUT"

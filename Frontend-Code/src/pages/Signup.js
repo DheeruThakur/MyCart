@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { TbEyeglass2 } from "react-icons/tb";
 import { TbEyeglassOff } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import { endpoints } from "../../utils/constants";
+import { endpoints } from "../utils/constants";
 import {toast} from 'react-toastify'
 
 
