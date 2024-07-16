@@ -82,7 +82,20 @@ const fetchProductByCategory = async (req , res) => {
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({message : `${error.message}` , success : false , error : true})
+        res.status(500).json({message : error.message , success : false , error : true})
+    }
+}
+
+const fetchCategoryWiseProducts = async (req , res) => {
+    try {
+        
+        const category = req.body?.category;
+        const result = await Product.find({category});
+        return res.status(200).json({data : result, message : "Category wise products fetched successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message : error.message , success : false , error : true})
     }
 }
 
@@ -91,5 +104,6 @@ module.exports = {
     uploadProduct,
     fetchAllProducts,
     updateProduct,
-    fetchProductByCategory
+    fetchProductByCategory,
+    fetchCategoryWiseProducts
 }

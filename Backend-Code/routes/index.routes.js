@@ -16,5 +16,6 @@ router.post('/upload-product' , userAuth , adminAuth , productController.uploadP
 router.get('/all-products' , productController.fetchAllProducts);
 router.put('/update-product' , userAuth , adminAuth , productController.updateProduct)
 router.get('/product-by-categories' , productController.fetchProductByCategory);
+router.post('/category-wise-products' , productController.fetchCategoryWiseProducts);
 
 module.exports = router;

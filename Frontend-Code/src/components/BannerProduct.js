@@ -46,13 +46,13 @@ const BannerProduct = () => {
     }
 
     return (
-        <div className="h-full w-full">
-            <div className="relative h-[350px] w-[1400px] mx-10 my-10">
+        <div className="w-full h-[350px]">
+            <div className="relative h-[350px] w-[1400px] mx-10 mt-10">
                 <div className='flex h-full w-full overflow-hidden shadow-md'>
                     {
                         desktopImages.map((url , idx) => {
                             return (
-                                <div className='min-h-full min-w-full' style={{transform : `translateX(${-translateXBy}%)`}}>
+                                <div key={url} className='min-h-full min-w-full transition-all' style={{transform : `translateX(${-translateXBy}%)`}}>
                                     <img src={url} className='h-full w-full object-cover'/>
                                 </div>
                                 

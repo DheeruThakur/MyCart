@@ -30,7 +30,7 @@ const AppLayout = () => {
        
         try {
             const userDetails = await fetch(fetchUserDetailsURL , {
-                method : `${endpoints.userDetail.method}`,
+                method : endpoints.userDetail.method,
                 headers : {
                     'Content-Type' : 'application/json',
                     'Authorization' : `Bearer ${localStorage.getItem('token')}`

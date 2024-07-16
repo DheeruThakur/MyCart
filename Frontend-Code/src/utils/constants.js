@@ -37,5 +37,9 @@ export const endpoints = {
     updateProduct : {
         path : `${Domain_NAME}/api/update-product`,
         method : "PUT"
-    }
+    },
+    fetchCategoryWiseProduct : {
+        path : `${Domain_NAME}/api/category-wise-products`,
+        method : "POST"
+    },
 }
