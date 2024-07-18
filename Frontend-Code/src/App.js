@@ -57,7 +57,9 @@ const AppLayout = () => {
             <Context.Provider value={{fetchUserDetails}}>
                 <ToastContainer />
                 <Header />
-                <Outlet />
+                <main className="pt-20">
+                    <Outlet />
+                </main>
                 <Footer />
             </ Context.Provider>
         </>
