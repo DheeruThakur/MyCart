@@ -1,45 +1,49 @@
 
-const Domain_NAME = "http://localhost:8081";
+const DOMAIN_NAME = "http://localhost:8081";
 
 export const endpoints = {
     signup : {
-        path : `${Domain_NAME}/api/signup`,
+        path : `${DOMAIN_NAME}/api/signup`,
         method : "POST",
     },
     login : {
-        path : `${Domain_NAME}/api/login`,
+        path : `${DOMAIN_NAME}/api/login`,
         method : "POST",
     },
     userDetail : {
-        path : `${Domain_NAME}/api/user-detail`,
+        path : `${DOMAIN_NAME}/api/user-detail`,
         method : "GET"
     },
     fetchAllUsers : {
-        path : `${Domain_NAME}/api/all-users`,
+        path : `${DOMAIN_NAME}/api/all-users`,
         method : "GET"
     },
     updateUser : {
-        path : `${Domain_NAME}/api/update-user`,
+        path : `${DOMAIN_NAME}/api/update-user`,
         method : "PUT"
     },
     uploadProduct : {
-        path : `${Domain_NAME}/api/upload-product`,
+        path : `${DOMAIN_NAME}/api/upload-product`,
         method : "POST"
     },
     fetchAllProducts : {
-        path : `${Domain_NAME}/api/all-products`,
+        path : `${DOMAIN_NAME}/api/all-products`,
         method : "GET"
     },
     fetchProductByCategory : {
-        path : `${Domain_NAME}/api/product-by-categories`,
+        path : `${DOMAIN_NAME}/api/product-by-categories`,
         method : "GET"
     },
     updateProduct : {
-        path : `${Domain_NAME}/api/update-product`,
+        path : `${DOMAIN_NAME}/api/update-product`,
         method : "PUT"
     },
     fetchCategoryWiseProduct : {
-        path : `${Domain_NAME}/api/category-wise-products`,
+        path : `${DOMAIN_NAME}/api/category-wise-products`,
         method : "POST"
     },
+    fetchProductDetails : {
+        path : `${DOMAIN_NAME}/api/product-details/`,
+        method : "GET"
+    }
 }

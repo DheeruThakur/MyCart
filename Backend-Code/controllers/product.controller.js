@@ -1,3 +1,4 @@
+const productModel = require("../models/product.model");
 const Product = require("../models/product.model")
 
 const uploadProduct = async (req , res) => {
@@ -99,11 +100,25 @@ const fetchCategoryWiseProducts = async (req , res) => {
     }
 }
 
+const fetchProductDetails = async (req , res) => {
+    const productId = req.params?.productId;
+    try {
+
+        const result = await productModel.findById(productId);
+        return res.status(200).json({data : result , message : "product's details fetched successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message : error.message , success : false , error : true})
+    }
+}
+
 
 module.exports = {
     uploadProduct,
     fetchAllProducts,
     updateProduct,
     fetchProductByCategory,
-    fetchCategoryWiseProducts
+    fetchCategoryWiseProducts,
+    fetchProductDetails
 }

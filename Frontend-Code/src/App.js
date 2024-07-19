@@ -18,6 +18,7 @@ import AllUsers from "./pages/AllUsers";
 import AllProducts from "./pages/AllProducts";
 import ProductCategory from "./pages/ProductCategory";
 import HomePage from "./pages/Home"
+import ProductDetail from "./pages/ProductDetail";
 
 
 const AppLayout = () => {
@@ -104,6 +105,10 @@ const appRouter = createBrowserRouter([
             {
                 path : "/product-category/:categoryName",
                 element : <ProductCategory />
+            },
+            {
+                path : "/product-details/:productId",
+                element : <ProductDetail />
             },
             
         ]
