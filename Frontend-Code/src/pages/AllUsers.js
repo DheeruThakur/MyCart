@@ -27,7 +27,7 @@ const AllUsers = () => {
                 method : endpoints.fetchAllUsers.method,
                 headers : {
                     'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer ${localStorage.getItem("token")}`
+                    'Authorization' : `Bearer ${localStorage.getItem("token") || ''}`
                 },
             });
     

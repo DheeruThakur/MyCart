@@ -62,7 +62,7 @@ const EditProductCard = ({productData , setProductData , setShowEditCard , fetch
                 method : endpoints.updateProduct.method,
                 headers : {
                     'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer ${localStorage.getItem('token')}`
+                    'Authorization' : `Bearer ${localStorage.getItem('token') || ''}`
                 },
                 body : JSON.stringify(productData)
             })

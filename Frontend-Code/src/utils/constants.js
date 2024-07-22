@@ -45,5 +45,13 @@ export const endpoints = {
     fetchProductDetails : {
         path : `${DOMAIN_NAME}/api/product-details/`,
         method : "GET"
-    }
+    },
+    addToCart : {
+        path : `${DOMAIN_NAME}/api/add-to-cart`,
+        method : "POST"
+    },
+    fetchCartItems : {
+        path : `${DOMAIN_NAME}/api/cart-items`,
+        method : "GET"
+    },
 }

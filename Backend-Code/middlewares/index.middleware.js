@@ -6,13 +6,12 @@ const userAuth = async (req , res , next) => {
         const headerToken = req.headers['authorization'];
         
         const token = headerToken && headerToken.split(' ')[1];
-        
+        console.log(token)
         if(!token){
             return res.status(401).json({message:"user not logged-in" , success:false , error:true});
         }
     
         const userdata = await jwt.verify(token , process.env.JWT_SECRET);
-        // console.log(userdata);
     
         if(!userdata){
             return res.status(401).json({message:"Invalid token !!" , success:false , error:true});
@@ -23,6 +22,13 @@ const userAuth = async (req , res , next) => {
         next();
 
     } catch (error) {
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({
+                message: "Please Login again",
+                success: false,
+                error: true
+            });
+        }
         console.log(("Error" , error))
         next(error);
     }

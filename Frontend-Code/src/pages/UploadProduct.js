@@ -40,7 +40,6 @@ const UploadProduct = ({setShowUploadProductModal}) => {
         const file = e.target.files[0];
 
         const cloudinaryUploadedImage = await uploadImage(file);
-        console.log("cloudinaryUploadedImage", cloudinaryUploadedImage);
 
         setData((prev) => {
             return {
@@ -75,7 +74,7 @@ const UploadProduct = ({setShowUploadProductModal}) => {
                 method : endpoints.uploadProduct.method,
                 headers : {
                     'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer ${localStorage.getItem('token')}`
+                    'Authorization' : `Bearer ${localStorage.getItem('token') || ''}`
                 },
                 body : JSON.stringify(data)
             })

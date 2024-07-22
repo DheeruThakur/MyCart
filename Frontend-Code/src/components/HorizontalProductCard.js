@@ -4,13 +4,15 @@ import {formatNumberToCurrency} from '../utils/formatNumberToCurrency'
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import addToCart from '../utils/addToCart';
+import useAddToCart from '../utils/addToCart';
 
 
 const HorizontalProductCard = ({category , heading}) => {
 
     const [products , setProducts] = useState([]);
     const [isLoading , setIsLoading] = useState(false);
+
+    const {addToCart} = useAddToCart();
 
     const [scroll , setScroll] = useState(0);
 
@@ -22,7 +24,6 @@ const HorizontalProductCard = ({category , heading}) => {
         
         setIsLoading(false);
         setProducts(result.data);
-        // console.log(result.data);
     }
 
     useEffect(() => {
@@ -37,6 +38,10 @@ const HorizontalProductCard = ({category , heading}) => {
 
     const handleForwardIcon = () => {
         scrollElement.current.scrollLeft += 300
+    }
+
+    const handleAddToCart = (e , productId) => {
+        addToCart(e , productId);
     }
     
     return (
@@ -66,7 +71,7 @@ const HorizontalProductCard = ({category , heading}) => {
                     (
                         products.map(product => {
                             return(
-                                <Link to={"product-details/"+product._id} key={product._id} className="flex bg-gray-300 h-[150px] w-[320px]">
+                                <Link to={`product-details/${product._id}`} key={product._id} className="flex bg-gray-300 h-[150px] w-[320px]">
                                     <div className="h-full w-[140px]">
                                         <img className='object-scale-down h-full' src={product.productImage[0]}/>
                                     </div>
@@ -77,7 +82,7 @@ const HorizontalProductCard = ({category , heading}) => {
                                             <p className='text-sm text-red-500'>{formatNumberToCurrency(product.sellingPrice)}</p>
                                             <p className='text-sm text-slate-400 line-through'>{formatNumberToCurrency(product.price)}</p>
                                         </div>
-                                        <button className='text-green-500 border-2 border-solid border-green-500 rounded-md px-2 py-[1px] my-2' onClick={(e) => addToCart(e)} >Add to Cart</button>
+                                        <button className='text-green-500 border-2 border-solid border-green-500 rounded-md px-2 py-[1px] my-2' onClick={(e) => handleAddToCart(e , product._id)} >Add to Cart</button>
                                     </div>
                                 </Link>
                             )

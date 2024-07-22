@@ -14,8 +14,8 @@ const Header = () => {
 
     const [showPanel , setShowPanel] = useState(false);
 
-    const user = useSelector(state => state.userDetails.user)
-    // console.log(user);
+    const user = useSelector(state => state.userDetails.user);
+    const cartItemsCount = useSelector(state => state.cartDetails.cartItemsCount);
     const dispatch = useDispatch();
 
     const handleLogout = () => {
@@ -70,7 +70,7 @@ const Header = () => {
                 </div>
                 <div className="mt-7 px-5 relative">
                     <HiMiniShoppingCart className="h-6 w-6"/>
-                    <p className="bg-green-500 text-white text-xs h-5 w-5 flex items-center justify-center absolute top-0 right-0 rounded-full transform -translate-x-1/2 -translate-y-1/2">0</p>
+                    <p className="bg-green-500 text-white text-xs h-5 w-5 flex items-center justify-center absolute top-0 right-0 rounded-full transform -translate-x-1/2 -translate-y-1/2">{cartItemsCount}</p>
                 </div>
                 <div className="py-5 px-5">
                     {

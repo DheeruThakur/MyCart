@@ -7,7 +7,6 @@ import { TbUsers } from "react-icons/tb";
 
 const AdminPanel = () => {
     const user = useSelector(state => state.userDetails.user);
-    // console.log("Users" , user);
 
     return (
         <div className="h-[687px] w-full flex">

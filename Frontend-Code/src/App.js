@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { endpoints } from "./utils/constants";
 import { useEffect } from "react";
 import Context from "./context";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./utils/store/store";
 import { setUserDetail } from "./utils/slice/userSlice";
 import AdminPanel from "./pages/AdminPanel";
@@ -19,11 +19,15 @@ import AllProducts from "./pages/AllProducts";
 import ProductCategory from "./pages/ProductCategory";
 import HomePage from "./pages/Home"
 import ProductDetail from "./pages/ProductDetail";
+import useFetchCartItems from "./utils/useFetchCartItems";
 
 
 const AppLayout = () => {
+
+    const {fetchCartItems} = useFetchCartItems();
     
     const dispatch = useDispatch();
+    
 
     const fetchUserDetails = async () => {
 
@@ -34,7 +38,7 @@ const AppLayout = () => {
                 method : endpoints.userDetail.method,
                 headers : {
                     'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer ${localStorage.getItem('token')}`
+                    'Authorization' : `Bearer ${localStorage.getItem('token') || ''}`
                 },
             });
         
@@ -51,6 +55,8 @@ const AppLayout = () => {
 
     useEffect(() => {
         fetchUserDetails();
+        fetchCartItems();
+        // console.log(selector);
     }, [])
 
     return (

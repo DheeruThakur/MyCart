@@ -3,12 +3,15 @@ import fetchCategoryWiseProduct from '../utils/fetchCategoryWiseProduct';
 import {formatNumberToCurrency} from '../utils/formatNumberToCurrency'
 import addToCart from '../utils/addToCart';
 import { Link } from 'react-router-dom';
+import useAddToCart from '../utils/addToCart';
 
 
 const RecomendProductCard = ({category , heading , currentProduct}) => {
 
     const [products , setProducts] = useState([]);
     const [isLoading , setIsLoading] = useState(false);
+
+    const {addToCart} = useAddToCart();
 
     const shimmerData = new Array(10).fill(null);
 
@@ -24,6 +27,10 @@ const RecomendProductCard = ({category , heading , currentProduct}) => {
         fetchProducts()
         
     } , [])
+
+    const handleAddToCart = (e , productId) => {
+        addToCart(e , productId);
+    }
     
     return (
         <div className="h-full w-[1400px] mx-10">
@@ -52,7 +59,7 @@ const RecomendProductCard = ({category , heading , currentProduct}) => {
                     (
                         products.map(product => {
                             return(
-                                <Link to={"product-details/"+product._id} key={product._id} className="bg-gray-300 h-[310px] w-[230px] mb-6">
+                                <Link to={`/product-details/${product._id}`} key={product._id} className="bg-gray-300 h-[310px] w-[230px] mb-6">
                                     <div className="h-[160px] w-[230px] flex justify-center items-center p-2">
                                         <img className='object-scale-down h-full mix-blend-multiply' src={product.productImage[0]}/>
                                     </div>
@@ -63,7 +70,7 @@ const RecomendProductCard = ({category , heading , currentProduct}) => {
                                             <p className='text-sm text-red-500'>{formatNumberToCurrency(product.sellingPrice)}</p>
                                             <p className='text-sm text-slate-400 line-through'>{formatNumberToCurrency(product.price)}</p>
                                         </div>
-                                        <button className='text-green-500 border-2 border-solid border-green-500 rounded-md px-2 py-[1px] my-2 w-full' onClick={(e) => addToCart(e)}>Add to Cart</button>
+                                        <button className='text-green-500 border-2 border-solid border-green-500 rounded-md px-2 py-[1px] my-2 w-full' onClick={(e) => handleAddToCart(e , product._id)}>Add to Cart</button>
                                     </div>
                                 </Link>
                             )

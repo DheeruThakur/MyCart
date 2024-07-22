@@ -54,7 +54,7 @@ const ProductDetail = () => {
 
     useEffect(() => {
         fetchProductDetails();
-    } , [])
+    } , [productId])
 
     const handleZoomImage = (e) => {
         const {left , top , width , height} = e.target.getBoundingClientRect();

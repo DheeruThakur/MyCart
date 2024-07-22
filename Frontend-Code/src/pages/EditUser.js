@@ -30,7 +30,7 @@ const EditUser = ({user , setIsEditModalOpen , fetchUsers}) => {
                 method : endpoints.updateUser.method,
                 headers : {
                     'Content-Type' : "application/json",
-                    'Authorization' : `Bearer ${localStorage.getItem("token")}`
+                    'Authorization' : `Bearer ${localStorage.getItem("token") || ''}`
                 },
                 body : JSON.stringify({user : updatedUser}),
             })
