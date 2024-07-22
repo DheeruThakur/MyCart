@@ -58,7 +58,7 @@ const AppLayout = () => {
             <Context.Provider value={{fetchUserDetails}}>
                 <ToastContainer />
                 <Header />
-                <main className="pt-20">
+                <main className="pt-20 bg-slate-100">
                     <Outlet />
                 </main>
                 <Footer />

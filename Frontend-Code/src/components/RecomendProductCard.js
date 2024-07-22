@@ -1,50 +1,34 @@
 import { useEffect, useRef, useState } from 'react'
 import fetchCategoryWiseProduct from '../utils/fetchCategoryWiseProduct';
 import {formatNumberToCurrency} from '../utils/formatNumberToCurrency'
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
 import addToCart from '../utils/addToCart';
 import { Link } from 'react-router-dom';
 
 
-const VerticalProductCard = ({category , heading}) => {
+const RecomendProductCard = ({category , heading , currentProduct}) => {
 
     const [products , setProducts] = useState([]);
     const [isLoading , setIsLoading] = useState(false);
 
-    const [scroll , setScroll] = useState(0);
-
     const shimmerData = new Array(10).fill(null);
-
-    const scrollElement = useRef();
 
     const fetchProducts = async () => {
         setIsLoading(true);
         const result = await fetchCategoryWiseProduct(category);
-        
+        const filteredData = result?.data?.filter(prod => prod._id !== currentProduct._id);
         setIsLoading(false);
-        setProducts(result.data);
-        // console.log(result.data);
+        setProducts(filteredData);
     }
 
     useEffect(() => {
         fetchProducts()
         
     } , [])
-
-    const handleBackwardIcon = () => {
-        scrollElement.current.scrollLeft -= 300
-        
-    }
-
-    const handleForwardIcon = () => {
-        scrollElement.current.scrollLeft += 300
-    }
     
     return (
-        <div className="relative h-[360px] w-[1400px] mx-10">
-            <p className='mt-8 mb-2 text-2xl font-semibold'>{heading}</p>
-            <div className='flex gap-8 overflow-hidden transition-all' ref={scrollElement}>
+        <div className="h-full w-[1400px] mx-10">
+            <p className='mt-8 mb-3 text-2xl font-semibold'>{heading}</p>
+            <div className='h-full w-full grid grid-cols-4 justify-between'>
                 {
                     isLoading ? (
                         shimmerData.map((product , idx) => {
@@ -68,18 +52,18 @@ const VerticalProductCard = ({category , heading}) => {
                     (
                         products.map(product => {
                             return(
-                                <Link to={"product-details/"+product._id} key={product._id} className="bg-gray-300 h-[310px] w-[230px]">
+                                <Link to={"product-details/"+product._id} key={product._id} className="bg-gray-300 h-[310px] w-[230px] mb-6">
                                     <div className="h-[160px] w-[230px] flex justify-center items-center p-2">
                                         <img className='object-scale-down h-full mix-blend-multiply' src={product.productImage[0]}/>
                                     </div>
-                                    <div className="bg-white h-full w-[230px] p-4">
+                                    <div className="bg-white h-[150px] w-[230px] p-4">
                                         <h1 className='text-xl font-medium my-[2px] text-ellipsis line-clamp-1 capitalize'>{product.productName}</h1>
                                         <p className='text-md text-slate-500'>{product.category}</p>
                                         <div className='flex gap-4 my-[2px]'>
                                             <p className='text-sm text-red-500'>{formatNumberToCurrency(product.sellingPrice)}</p>
                                             <p className='text-sm text-slate-400 line-through'>{formatNumberToCurrency(product.price)}</p>
                                         </div>
-                                        <button className='text-green-500 border-2 border-solid border-green-500 rounded-md px-2 py-[1px] my-2 ml-[45px]' onClick={(e) => addToCart(e)}>Add to Cart</button>
+                                        <button className='text-green-500 border-2 border-solid border-green-500 rounded-md px-2 py-[1px] my-2 w-full' onClick={(e) => addToCart(e)}>Add to Cart</button>
                                     </div>
                                 </Link>
                             )
@@ -87,22 +71,10 @@ const VerticalProductCard = ({category , heading}) => {
                     )
                     
                 }
-            </div>
-
-            <div className='absolute w-full top-[175px]'>
-                <div className='w-full flex justify-between'>
-                    <div className='h-6 w-6 rounded-full bg-white flex justify-center items-center pr-1'>
-                        <IoIosArrowBack className='h-full w-full' onClick={handleBackwardIcon}/>
-                    </div>
-                    <div className='h-6 w-6 rounded-full bg-white flex justify-center items-center pl-1'>
-                        <IoIosArrowForward className='h-full w-full' onClick={handleForwardIcon}/>
-                    </div> 
-                </div>
-            </div>
-            
+            </div>  
         </div>
         
     )
 }
 
-export default VerticalProductCard
+export default RecomendProductCard
