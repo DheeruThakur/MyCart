@@ -60,18 +60,21 @@ const Header = () => {
                         (showPanel && user?.role == Roles.ADMIN)
                         &&
                         <div className="absolute bottom-0 p-2 py-6 rounded-sm top-16 h-16 bg-pink-50 shadow-lg">
-                        <nav className="bg-slate-50 rounded-sm">
-                            <Link to="/admin-panel" className="whitespace-nowrap p-3 hover:text-green-500" onClick={() => setShowPanel(prev => !prev)} >Admin Panel</Link>
-                        </nav>
-                    </div> 
-                                    
-
+                            <nav className="bg-slate-50 rounded-sm">
+                                <Link to="/admin-panel" className="whitespace-nowrap p-3 hover:text-green-500" onClick={() => setShowPanel(prev => !prev)} >Admin Panel</Link>
+                            </nav>
+                        </div>        
                     }
                 </div>
-                <div className="mt-7 px-5 relative">
-                    <HiMiniShoppingCart className="h-6 w-6"/>
-                    <p className="bg-green-500 text-white text-xs h-5 w-5 flex items-center justify-center absolute top-0 right-0 rounded-full transform -translate-x-1/2 -translate-y-1/2">{cartItemsCount}</p>
-                </div>
+                {
+                    (user != null)
+                    &&
+                    <Link to='/cart' className="mt-7 px-5 relative">
+                        <HiMiniShoppingCart className="h-6 w-6"/>
+                        <p className="bg-green-500 text-white text-xs h-5 w-5 flex items-center justify-center absolute top-0 right-0 rounded-full transform -translate-x-1/2 -translate-y-1/2">{cartItemsCount}</p>
+                    </Link>
+                }
+                
                 <div className="py-5 px-5">
                     {
                         (user != null)

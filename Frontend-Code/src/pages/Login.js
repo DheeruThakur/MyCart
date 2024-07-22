@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { endpoints } from "../utils/constants";
 import UserContext from "../context/index"
+import useFetchCartItems from "../utils/useFetchCartItems";
 
 
 const Login = () => {
@@ -14,6 +15,8 @@ const Login = () => {
         email : "",
         password : "",
     })
+
+    const {fetchCartItems} = useFetchCartItems();
 
     const navigate = useNavigate();
     const userContext = useContext(UserContext)
@@ -48,6 +51,7 @@ const Login = () => {
                 localStorage.setItem('token' , jsonData?.data?.token);
                 toast.success("User login successfully");
                 userContext.fetchUserDetails();
+                fetchCartItems();
                 navigate("/");
             }
             else {

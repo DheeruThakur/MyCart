@@ -26,5 +26,7 @@ router.get('/product-details/:productId' , productController.fetchProductDetails
 
 router.post('/add-to-cart' , userAuth, cartController.addToCart);
 router.get('/cart-items' , userAuth, cartController.fetchCartItems);
+router.post('/update-cart-item' , userAuth, cartController.updateCartItem);
+router.delete('/remove-cart-item' , userAuth, cartController.removeCartItem);
 
 module.exports = router;

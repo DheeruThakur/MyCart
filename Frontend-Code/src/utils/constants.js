@@ -54,4 +54,12 @@ export const endpoints = {
         path : `${DOMAIN_NAME}/api/cart-items`,
         method : "GET"
     },
+    updateCartItem : {
+        path : `${DOMAIN_NAME}/api/update-cart-item`,
+        method : "POST"
+    },
+    removeCartItem : {
+        path : `${DOMAIN_NAME}/api/remove-cart-item`,
+        method : "DELETE"
+    },
 }

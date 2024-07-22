@@ -20,6 +20,7 @@ import ProductCategory from "./pages/ProductCategory";
 import HomePage from "./pages/Home"
 import ProductDetail from "./pages/ProductDetail";
 import useFetchCartItems from "./utils/useFetchCartItems";
+import Cart from "./pages/Cart";
 
 
 const AppLayout = () => {
@@ -115,6 +116,10 @@ const appRouter = createBrowserRouter([
             {
                 path : "/product-details/:productId",
                 element : <ProductDetail />
+            },
+            {
+                path : "/cart",
+                element : <Cart />
             },
             
         ]

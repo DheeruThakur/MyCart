@@ -43,7 +43,40 @@ const fetchCartItems = async (req , res) => {
     }
 }
 
+const updateCartItem = async (req , res) => {
+    try {
+        const userId = req.userId;
+        const {productId , quantity} = req.body;
+        const updatedData = await AddToCart.findOneAndUpdate({userId , productId} , {
+            ...(quantity && {quantity})
+        } , { new : true})
+
+        return res.status(200).json({data : updatedData , message : "product updated successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message : `${error.message}` , success : false , error : true})
+    }
+}
+
+const removeCartItem = async (req , res) => {
+    try {
+        const userId = req.userId;
+        const {productId} = req.body;
+
+        const updatedData = await AddToCart.findOneAndDelete({userId , productId});
+        // console.log(updatedData)
+        return res.status(200).json({data : updatedData , message : "product deleted successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message : `${error.message}` , success : false , error : true})
+    }
+}
+
 module.exports = {
     addToCart,
-    fetchCartItems
+    fetchCartItems,
+    updateCartItem,
+    removeCartItem
 }
