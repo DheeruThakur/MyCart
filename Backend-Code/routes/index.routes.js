@@ -21,6 +21,7 @@ router.put('/update-product' , userAuth , adminAuth , productController.updatePr
 router.get('/product-by-categories' , productController.fetchProductByCategory);
 router.post('/category-wise-products' , productController.fetchCategoryWiseProducts);
 router.get('/product-details/:productId' , productController.fetchProductDetails);
+router.get('/search' , productController.fetchProductBySearch);
 
 // Cart routes
 

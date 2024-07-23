@@ -62,4 +62,8 @@ export const endpoints = {
         path : `${DOMAIN_NAME}/api/remove-cart-item`,
         method : "DELETE"
     },
+    fetchProductsBySearchName : {
+        path : `${DOMAIN_NAME}/api/search`,
+        method : "GET"
+    },
 }

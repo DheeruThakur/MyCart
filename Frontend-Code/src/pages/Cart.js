@@ -111,8 +111,8 @@ const Cart = () => {
         {
             items.map(item => {
                 return (
-                    <div key={item._id} className='flex h-40 w-full bg-white m-4 shadow-sm'>
-                        <div className='w-[220px] h-full flex justify-center p-2 bg-gray-200'>
+                    <div key={item._id} className='flex h-40 w-full bg-white m-4 shadow-sm border rounded-sm'>
+                        <div className='w-[220px] h-full flex justify-center p-2 bg-gray-200 rounded-sm'>
                             <img src={item?.productId?.productImage[0]} alt='product-image' className='h-full object-scale-down mix-blend-multiply' />
                         </div>
                         <div className='h-38 m-4 mx-6 w-full relative'>
@@ -140,7 +140,7 @@ const Cart = () => {
 
        {/** billing section */}
        <div className='col-span-1'>
-            <div className='mx-10 bg-white h-[320px] my-4 shadow-md'>
+            <div className='mx-10 bg-white h-[320px] my-4 rounded-sm'>
                 <div className='h-12 flex items-center border-b border-gray-200'>
                     <p className='text-slate-500 text-xl font-semibold p-2 ml-6'>PRICE DETAILS</p>
                 </div>
@@ -172,6 +172,9 @@ const Cart = () => {
                         <p className='text-green-600'>You will save {IsdeliveryChargeable ? formatNumberToCurrency(discount) : formatNumberToCurrency(discount + deliveryCharges) } on this order</p>
                     </div>
                 </div>
+            </div>
+            <div className='h-10 mx-10 bg-green-500 rounded-sm flex justify-center items-center'>
+                <button className='text-md font-medium tracking-widest text-white'>PLACE ORDER </button>
             </div>
             <div className='mx-10 my-10 flex'>
                 <AiFillSafetyCertificate className='h-14 w-14 ml-3'/>

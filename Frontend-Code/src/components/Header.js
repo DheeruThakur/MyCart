@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {clearUserDetails} from "../utils/slice/userSlice"
 import { useState } from "react";
 import Roles from "../utils/role";
+import { IoSearchOutline } from "react-icons/io5";
 
 const Header = () => {
 
     const navigate = useNavigate();
 
     const [showPanel , setShowPanel] = useState(false);
+    const [searchInput , setSearchInput] = useState("");
 
     const user = useSelector(state => state.userDetails.user);
     const cartItemsCount = useSelector(state => state.cartDetails.cartItemsCount);
@@ -38,14 +40,27 @@ const Header = () => {
         }
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate(`/search?q=${searchInput}`)
+    }
+
 
     return (
         <div className="h-20 flex justify-between bg-pink-50 shadow-md fixed w-full z-40">
             <Link to="/"><img className="h-[82px] w-[150px] ml-2 py-2 px-2 rounded-xl" src={logo} alt="Logo" /></Link>
-            <div className="py-5 ml-32"> 
-                <input className="mr-1 border-2 border-solid border-gray-300 px-10 py-1 rounded-md text-sm outline-none" type="text" placeholder="Search for products"/>
-                <button className="text-green-500 border-2 border-solid border-green-500 rounded-md px-2 py-[2px]">Search</button>
-            </div>
+            <form onSubmit={handleSearch} className="w-[400px] h-10 mt-4 rounded-full relative">
+                <input
+                className="h-full w-[336px] absolute left-0 bg-gray-900 rounded-l-full px-6 tracking-wide text-slate-200 outline-green-500 font-light"
+                type="text"
+                placeholder="Search"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                />
+                <button type="submit" className="h-full w-16 absolute right-0 bg-gray-400 rounded-r-full flex justify-center items-center">
+                <IoSearchOutline className="h-7 w-7 text-white" />
+                </button>
+            </form>
             <div className="flex mr-10">
                 <div className="relative flex justify-center">
                     {

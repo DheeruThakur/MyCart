@@ -113,6 +113,28 @@ const fetchProductDetails = async (req , res) => {
     }
 }
 
+const fetchProductBySearch = async (req , res) => {
+    const searchBy = req.query?.q;
+    try {
+        const regExp = new RegExp(searchBy , 'i');
+        const result = await productModel.find({
+            $or : [
+                {
+                    productName : regExp
+                },
+                {
+                    category : regExp
+                }
+            ]
+        });
+        return res.status(200).json({data : result , message : "product's fetched successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message : error.message , success : false , error : true})
+    }
+}
+
 
 module.exports = {
     uploadProduct,
@@ -120,5 +142,6 @@ module.exports = {
     updateProduct,
     fetchProductByCategory,
     fetchCategoryWiseProducts,
-    fetchProductDetails
+    fetchProductDetails,
+    fetchProductBySearch
 }

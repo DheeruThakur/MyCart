@@ -30,7 +30,6 @@ const useAddToCart = () => {
             if(result.success){
                 toast.success(result.message);
                 fetchCartItems();
-                // dispatch(addProductCountToCart(1));
                 return result.data;
             }
             else {
