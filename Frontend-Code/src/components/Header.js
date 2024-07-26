@@ -1,7 +1,7 @@
 
 import { FaRegUser } from "react-icons/fa6";
 import { HiMiniShoppingCart } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/logo.svg"
 import { useDispatch, useSelector } from "react-redux";
 import {clearUserDetails} from "../utils/slice/userSlice"
@@ -12,9 +12,11 @@ import { IoSearchOutline } from "react-icons/io5";
 const Header = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [showPanel , setShowPanel] = useState(false);
-    const [searchInput , setSearchInput] = useState("");
+    const query = location?.search?.split('=')[1] || "";
+    const [searchInput , setSearchInput] = useState(query);
 
     const user = useSelector(state => state.userDetails.user);
     const cartItemsCount = useSelector(state => state.cartDetails.cartItemsCount);
@@ -49,6 +51,7 @@ const Header = () => {
     return (
         <div className="h-20 flex justify-between bg-pink-50 shadow-md fixed w-full z-40">
             <Link to="/"><img className="h-[82px] w-[150px] ml-2 py-2 px-2 rounded-xl" src={logo} alt="Logo" /></Link>
+            {/** search box */}
             <form onSubmit={handleSearch} className="w-[400px] h-10 mt-4 rounded-full relative">
                 <input
                 className="h-full w-[336px] absolute left-0 bg-gray-900 rounded-l-full px-6 tracking-wide text-slate-200 outline-green-500 font-light"
@@ -81,6 +84,7 @@ const Header = () => {
                         </div>        
                     }
                 </div>
+                {/** cart icon */}
                 {
                     (user != null)
                     &&

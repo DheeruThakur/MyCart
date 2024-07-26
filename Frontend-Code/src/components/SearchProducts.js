@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { formatNumberToCurrency } from '../utils/formatNumberToCurrency';
 
 const SearchProducts = ({searchBy}) => {
-
     const [isLoading , setIsLoading] = useState(false);
     const [data , setData] = useState([]);
 

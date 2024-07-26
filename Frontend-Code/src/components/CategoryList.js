@@ -55,7 +55,7 @@ const CategoryList = () => {
                 (
                     categories?.map((cat , idx) => {
                         return (
-                            <Link to={"/product-category/"+cat?.category.toLowerCase()} className='flex flex-col cursor-pointer' key={cat+idx}>
+                            <Link to={`/product-category?category=${cat?.category}`} className='flex flex-col cursor-pointer' key={cat+idx}>
                                 <div className='h-20 w-20 bg-slate-200 rounded-full overflow-hidden'>
                                     <img src={cat?.productImage[0]} alt={cat.category} className='h-full w-full p-4 object-scale-down mix-blend-multiply hover:scale-125 transition-all'/>
                                 </div>

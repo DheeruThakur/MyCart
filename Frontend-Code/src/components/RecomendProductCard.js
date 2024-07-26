@@ -4,6 +4,7 @@ import {formatNumberToCurrency} from '../utils/formatNumberToCurrency'
 import addToCart from '../utils/addToCart';
 import { Link } from 'react-router-dom';
 import useAddToCart from '../utils/addToCart';
+import scrollToTop from '../utils/scrollToTop';
 
 
 const RecomendProductCard = ({category , heading , currentProduct}) => {
@@ -25,7 +26,6 @@ const RecomendProductCard = ({category , heading , currentProduct}) => {
 
     useEffect(() => {
         fetchProducts()
-        
     } , [])
 
     const handleAddToCart = (e , productId) => {
@@ -59,7 +59,7 @@ const RecomendProductCard = ({category , heading , currentProduct}) => {
                     (
                         products.map(product => {
                             return(
-                                <Link to={`/product-details/${product._id}`} key={product._id} className="bg-gray-300 h-[310px] w-[230px] mb-6">
+                                <Link to={`/product-details/${product._id}`} key={product._id} className="bg-gray-300 h-[310px] w-[230px] mb-6" onClick={scrollToTop()}>
                                     <div className="h-[160px] w-[230px] flex justify-center items-center p-2">
                                         <img className='object-scale-down h-full mix-blend-multiply' src={product.productImage[0]}/>
                                     </div>

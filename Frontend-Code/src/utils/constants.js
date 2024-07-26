@@ -66,4 +66,8 @@ export const endpoints = {
         path : `${DOMAIN_NAME}/api/search`,
         method : "GET"
     },
+    filterCategoryWiseProducts : {
+        path : `${DOMAIN_NAME}/api/filter-category-wise-products`,
+        method : "POST"
+    },
 }

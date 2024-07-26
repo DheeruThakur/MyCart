@@ -16,12 +16,12 @@ import { setUserDetail } from "./utils/slice/userSlice";
 import AdminPanel from "./pages/AdminPanel";
 import AllUsers from "./pages/AllUsers";
 import AllProducts from "./pages/AllProducts";
-import ProductCategory from "./pages/ProductCategory";
 import HomePage from "./pages/Home"
 import ProductDetail from "./pages/ProductDetail";
 import useFetchCartItems from "./utils/useFetchCartItems";
 import Cart from "./pages/Cart";
 import Search from "./pages/Search";
+import CategoryWiseProducts from "./pages/CategoryWiseProducts";
 
 
 const AppLayout = () => {
@@ -58,13 +58,12 @@ const AppLayout = () => {
     useEffect(() => {
         fetchUserDetails();
         fetchCartItems();
-        // console.log(selector);
     }, [])
 
     return (
         <>
             <Context.Provider value={{fetchUserDetails}}>
-                <ToastContainer />
+                <ToastContainer className="fixed top-20 left-[600px]"/>
                 <Header />
                 <main className="pt-20 bg-slate-100">
                     <Outlet />
@@ -111,8 +110,8 @@ const appRouter = createBrowserRouter([
                 ]
             },
             {
-                path : "/product-category/:categoryName",
-                element : <ProductCategory />
+                path : "/product-category",
+                element : <CategoryWiseProducts />
             },
             {
                 path : "/product-details/:productId",

@@ -28,7 +28,6 @@ const HorizontalProductCard = ({category , heading}) => {
 
     useEffect(() => {
         fetchProducts()
-        
     } , [])
 
     const handleBackwardIcon = () => {

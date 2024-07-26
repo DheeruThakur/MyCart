@@ -70,7 +70,7 @@ const login = async (req , res) => {
             role : dbUser.role,
         }
 
-        const jwtToken = jwt.sign(tokenPayload , process.env.JWT_SECRET , {expiresIn : '1h'});
+        const jwtToken = jwt.sign(tokenPayload , process.env.JWT_SECRET , {expiresIn : '24h'});
     
         return res.status(201).json({data : {token : jwtToken} ,message : 'user login successfully' , success:true , error:false})
 

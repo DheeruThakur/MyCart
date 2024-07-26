@@ -151,8 +151,8 @@ const ProductDetail = () => {
                         </div>
 
                         {/** product details */}
-                        <div className="flex flex-col gap-2 mt-4">
-                            <p className="bg-green-200 rounded-full text-md text-center text-green-500 mr-10">{data.brandName}</p>
+                        <div className="flex flex-col gap-2 mt-2">
+                            <p className="bg-green-200 rounded-full text-md text-center w-44 text-green-500 mr-10">{data.brandName}</p>
                             <p className="text-3xl font-medium">{data.productName}</p>
                             <p className="text-sm text-slate-400">{data.category}</p>
 
@@ -168,14 +168,14 @@ const ProductDetail = () => {
                                 <p className="text-slate-400 line-through text-2xl">{formatNumberToCurrency(data.price)}</p>
                             </div>
 
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 border-b-2 border-slate-200 pb-4">
                                 <button className="border-2 border-green-500 rounded-md px-4 py-1 text-green-500 hover:text-white hover:bg-green-500">Buy Now</button>
                                 <button className="border-2 border-green-500 rounded-md px-4 py-1 bg-green-500 text-white hover:text-green-500 hover:bg-white">Add To Cart</button>
                             </div>
 
-                            <div className="my-4">
-                                <p className="text-md">Description :</p>
-                                <p className="text-sm font-light mt-1">{data.description}</p>
+                            <div className="mt-2 w-[700px]">
+                                <p className="text-lg font-semibold">About this item</p>
+                                <p className="text-sm mt-3 tracking-wide px-4">{data.description}</p>
                             </div>
                         
                             

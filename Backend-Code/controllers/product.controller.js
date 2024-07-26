@@ -135,6 +135,20 @@ const fetchProductBySearch = async (req , res) => {
     }
 }
 
+const filterProductsByCategory = async (req , res) => {
+    const {searchCategories} = req.body;
+    try {
+        const result = await productModel.find({ 
+            category : { $in : searchCategories}
+        });
+        return res.status(200).json({data : result , message : "products filter successfully" , success : true , error : false})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message : error.message , success : false , error : true})
+    }
+}
+
 
 module.exports = {
     uploadProduct,
@@ -143,5 +157,6 @@ module.exports = {
     fetchProductByCategory,
     fetchCategoryWiseProducts,
     fetchProductDetails,
-    fetchProductBySearch
+    fetchProductBySearch,
+    filterProductsByCategory
 }
