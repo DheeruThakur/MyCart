@@ -1,5 +1,5 @@
 
-const DOMAIN_NAME = "http://localhost:8081";
+const DOMAIN_NAME = "https://mycart-de0h.onrender.com";
 
 export const endpoints = {
     signup : {
