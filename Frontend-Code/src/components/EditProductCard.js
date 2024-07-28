@@ -4,7 +4,7 @@ import productCategory from "../utils/productCategory"
 import { useState } from "react";
 import UploadProductImage from './ShowProductImage'
 import { MdDeleteForever } from "react-icons/md";
-import uploadImage from "../utils/UploadImage";
+import uploadImage from "../utils/uploadImage";
 import { endpoints } from "../utils/constants";
 import { toast } from "react-toastify";
 
